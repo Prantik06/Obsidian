@@ -1,0 +1,28 @@
+package com.obsidian.network;
+
+import java.io.*;
+import java.net.*;
+
+public class PeerClient {
+
+    public void connect(
+            String host,
+            int port,
+            String message
+    ) throws IOException {
+
+        try (
+                Socket socket =
+                        new Socket(host, port);
+
+                PrintWriter writer =
+                        new PrintWriter(
+                                socket.getOutputStream(),
+                                true
+                        )
+        ) {
+
+            writer.println(message);
+        }
+    }
+}
